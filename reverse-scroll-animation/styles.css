@@ -1,0 +1,64 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(10px, 1fr));
+    gap: 2rem;
+    width: min(100%, 72rem);
+    margin-inline: auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-wrapper img {
+    border-radius: 1em;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 0.75;
+    object-fit: cover;
+}
+
+@supports (animation-timeline: scroll()) {
+    .container {
+        overflow-y: hidden;
+    }
+
+    .row:nth-child(odd) {
+        flex-direction: column-reverse;
+        animation: scroller linear forwards;
+        animation-timeline: scroll(root block);
+    }
+
+    @keyframes scroller {
+        from {
+            transform: translateY(calc(-100% + 100vh));
+        }
+        to {
+            transform: translateY(calc(100% - 100vh));
+        }
+    }
+}
+
+/* Resets */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overscroll-behavior: none;
+}
+
+body {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+figure {
+    margin-inline: 0;
+}
