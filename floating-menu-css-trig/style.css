@@ -1,0 +1,127 @@
+@layer base, components;
+
+@layer components {
+    .container {
+        display: grid;
+        width: 60vw;
+        height: 100svh;
+        place-items: center;
+        margin-inline: auto;
+    }
+
+    .button-group {
+        display: grid;
+        place-items: center;
+
+        > * {
+            grid-area: 1 / 1;
+        }
+    }
+
+    button {
+        background: var(--btn-bg);
+        padding: 1.5rem;
+        border-radius: 100vh;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease-out;
+        cursor: pointer;
+        z-index: 1;
+
+        path {
+            stroke: white;
+            stroke-width: 5;
+            stroke-linecap: round;
+        }
+
+        &:hover {
+            scale: 1.02;
+        }
+        &:active {
+            scale: 0.9;
+        }
+    }
+
+    .item {
+        --size: 88px;
+        --radius: 0px;
+        --opacity: 0;
+        --delay: 75ms;
+        --easing: cubic-bezier(0.82, 0, 0.18, 1);
+
+        /* move items 4 spaces for demo purpose */
+        --degrees: calc((var(--idx) + 4) * (360deg / 8));
+        --stagger: calc(var(--delay) * (4 - var(--idx)));
+
+        width: var(--size);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        opacity: var(--opacity);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: transform 0.3s var(--easing), opacity 0.2s var(--easing);
+        transition-delay: var(--stagger);
+
+        transform: translate(
+            calc(cos(var(--degrees)) * var(--radius)),
+            calc(sin(var(--degrees)) * var(--radius))
+        );
+
+        [data-toggled] & {
+            --radius: 160px;
+            --opacity: 1;
+            --stagger: calc(var(--delay) * (var(--idx) - 1));
+        }
+
+        &:nth-of-type(1) {
+            background: var(--item-one-bg);
+        }
+        &:nth-of-type(2) {
+            background: var(--item-two-bg);
+        }
+        &:nth-of-type(3) {
+            background: var(--item-three-bg);
+        }
+        &:nth-of-type(4) {
+            background: var(--item-four-bg);
+        }
+    }
+}
+
+@layer base {
+    :root {
+        --bg: #1c1c2e;
+        --btn-bg: hsl(227 88% 68%);
+        --item-one-bg: #f6c2c2;
+        --item-two-bg: #f9fac4;
+        --item-three-bg: #d4cafd;
+        --item-four-bg: #bdddf4;
+    }
+
+    html {
+        box-sizing: border-box;
+        block-size: 100%;
+    }
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+    }
+
+    body {
+        min-block-size: 100dvh;
+        font-family: Rubik, sans-serif;
+        background: var(--bg);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
