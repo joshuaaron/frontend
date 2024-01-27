@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    gap: 1rem;
+}
+
+.circle {
+    width: 120px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: red;
+    display: grid;
+    place-content: center;
+}
+
+body {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+}
+
+html {
+    height: 100%;
+}
