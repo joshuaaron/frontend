@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @layer base, components;
 
 @keyframes move-blob {
@@ -45,6 +45,8 @@
         backdrop-filter: blur(15px);
         box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.15);
         font-size: 4cqi;
+        letter-spacing: 2px;
+
         z-index: 1;
 
         .bottom-row {
@@ -81,13 +83,12 @@
         width: var(--size);
         aspect-ratio: 1 / 1.05;
         background: linear-gradient(180deg, var(--color-start) 30%, var(--color-end));
-        border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
         animation: move-blob var(--duration) infinite alternate ease-in-out;
     }
 
     .blob-one {
         --size: 150%;
-        --color-start: hsla(200, 100%, 59%, 0.45);
+        --color-start: hsla(200, 100%, 60%, 0.45);
         --color-end: hsla(165, 67%, 77%, 0.55);
         /* --color-start: hsl(303, 78%, 49%, 0.65); */
         /* --color-end: hsl(275, 63%, 35%, 0.6); */
@@ -120,9 +121,6 @@
 @layer base {
     :root {
         --bg: #11061e;
-        --radius: 8px;
-        --border: 4px;
-        --speed: 0.25s;
     }
 
     html {
@@ -146,7 +144,6 @@
         place-items: center;
         background: var(--bg);
         color: white;
-        letter-spacing: 2px;
         line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
