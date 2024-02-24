@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@layer base, components;
+
+@keyframes move-blob {
+    from {
+        translate: var(--from);
+        rotate: -90deg;
+        border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
+    }
+    to {
+        translate: var(--to);
+        rotate: 80deg;
+        border-radius: 76% 24% 33% 67% / 68% 55% 45% 42%;
+    }
+}
+
+@layer components {
+    .wrapper {
+        width: clamp(55vmax, 1.5rem, 65vmax);
+        aspect-ratio: 16/9;
+        position: relative;
+        border-radius: 40px;
+        display: grid;
+        overflow: hidden;
+        container-type: inline-size;
+
+        > * {
+            grid-area: 1 / 1;
+        }
+    }
+
+    .card {
+        position: relative;
+        display: grid;
+        grid-template: 1fr 1fr 2fr 1fr / 1fr;
+        align-items: center;
+
+        overflow: hidden;
+        padding: 1rem 2rem;
+        width: 100%;
+        height: 100%;
+
+        border-radius: 40px;
+        background: rgb(255 255 255 / 0.15);
+        backdrop-filter: blur(15px);
+        box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.15);
+        font-size: 4cqi;
+        z-index: 1;
+
+        .bottom-row {
+            display: grid;
+            gap: 1rem;
+            grid-template: 1fr / auto auto 1fr;
+            line-height: 1.125;
+            align-items: center;
+
+            > * {
+                display: grid;
+                gap: 0.25rem;
+                padding-block: 0.5rem;
+            }
+
+            > :last-of-type {
+                justify-self: end;
+            }
+
+            .valid {
+                font-size: 2.5cqi;
+                opacity: 0.85;
+            }
+        }
+
+        .card-number {
+            font-size: 7cqi;
+            font-weight: 600;
+        }
+    }
+
+    .blob {
+        position: absolute;
+        width: var(--size);
+        aspect-ratio: 1 / 1.05;
+        background: linear-gradient(180deg, var(--color-start) 30%, var(--color-end));
+        border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
+        animation: move-blob var(--duration) infinite alternate ease-in-out;
+    }
+
+    .blob-one {
+        --size: 150%;
+        --color-start: hsla(200, 100%, 59%, 0.45);
+        --color-end: hsla(165, 67%, 77%, 0.55);
+        /* --color-start: hsl(303, 78%, 49%, 0.65); */
+        /* --color-end: hsl(275, 63%, 35%, 0.6); */
+        --from: -60% -65%;
+        --to: 55% -6%;
+        --duration: 12s;
+    }
+    .blob-two {
+        --size: 150%;
+        --color-start: hsla(186, 100%, 59%, 0.5);
+        --color-end: hsla(221, 68%, 77%, 0.65);
+        /* --color-start: hsl(310, 36%, 44%, 0.6); */
+        /* --color-end: hsl(263, 49%, 33%, 0.6); */
+        --from: 43% -39%;
+        --to: -40% 11%;
+        --duration: 10s;
+    }
+    .blob-three {
+        --size: 125%;
+        --color-start: hsla(218, 100%, 59%, 0.55);
+        --color-end: hsl(135, 68%, 77%, 0.6);
+        /* --color-start: hsl(260, 64%, 37%, 0.6); */
+        /* --color-end: hsl(241, 66%, 41%, 0.6); */
+        --from: -43% -58%;
+        --to: 40% 5%;
+        --duration: 11s;
+    }
+}
+
+@layer base {
+    :root {
+        --bg: #11061e;
+        --radius: 8px;
+        --border: 4px;
+        --speed: 0.25s;
+    }
+
+    html {
+        box-sizing: border-box;
+        block-size: 100%;
+    }
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+    }
+
+    body {
+        min-block-size: 100dvh;
+        font-family: 'Montserrat', 'Karla', serif;
+        padding: 1rem;
+        display: grid;
+        place-items: center;
+        background: var(--bg);
+        color: white;
+        letter-spacing: 2px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-transform: uppercase;
+    }
+
+    img {
+        max-width: 100%;
+        height: 100%;
+        aspect-ratio: 20/9;
+        display: block;
+        object-fit: cover;
+    }
+}
