@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @layer base, components;
 
-@keyframes move-blob {
+@keyframes animate-blobs {
     from {
         translate: var(--from);
         rotate: -90deg;
@@ -23,6 +23,7 @@
         display: grid;
         overflow: hidden;
         container-type: inline-size;
+        background: #11061e;
 
         > * {
             grid-area: 1 / 1;
@@ -83,7 +84,7 @@
         width: var(--size);
         aspect-ratio: 1 / 1.05;
         background: linear-gradient(180deg, var(--color-start) 30%, var(--color-end));
-        animation: move-blob var(--duration) infinite alternate ease-in-out;
+        animation: animate-blobs var(--duration) infinite alternate ease-in-out;
     }
 
     .blob-one {
@@ -120,7 +121,7 @@
 
 @layer base {
     :root {
-        --bg: #11061e;
+        --bg: #1c1c2e;
     }
 
     html {
