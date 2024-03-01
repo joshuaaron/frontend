@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@layer base, components;
+
+@layer components {
+    .wrapper {
+        width: min(100% - 4rem, 800px);
+        margin-inline: auto;
+        display: grid;
+        place-content: center;
+        grid-auto-flow: column;
+        gap: 2rem;
+    }
+
+    button {
+        --background: linear-gradient(90deg, #5af4f7, #29c2e0);
+        --text-color: #fff;
+        --font-size: 1.25rem;
+        --text-offset: var(--font-size);
+        --duration: 0.2s;
+
+        display: flex;
+        padding: 1.125rem 2rem;
+        border-radius: 100vmin;
+        outline: none;
+        border: var(--border, none);
+
+        background: var(--background);
+        color: var(--text-color);
+        font-size: var(--font-size);
+        font-family: inherit;
+        font-weight: 500;
+        line-height: var(--font-size);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        translate: 0 var(--button-y, 0);
+        scale: var(--scale, 1);
+        transition: translate var(--duration) ease, scale var(--duration) ease;
+
+        div {
+            display: flex;
+            overflow: hidden;
+            text-shadow: 0 var(--text-offset) 0 var(--text-color);
+        }
+
+        span {
+            white-space: pre;
+            translate: 0 var(--span-y);
+            transition: translate var(--duration) calc(var(--i) * 25ms) ease;
+        }
+
+        &:hover {
+            --scale: 1.04;
+            --button-y: -4px;
+            --span-y: calc(var(--font-size) * -1);
+        }
+
+        &[data-reverse] {
+            --text-offset: calc(var(--font-size) * -1);
+
+            &:hover {
+                --span-y: calc(var(--font-size));
+            }
+        }
+
+        &:nth-of-type(2) {
+            --background: linear-gradient(90deg, #f28367, #ff5282);
+        }
+        &:nth-of-type(3) {
+            --background: linear-gradient(90deg, #5b6cf9, #ea98da);
+        }
+    }
+}
+
+@layer base {
+    :root {
+        --bg: #1c1c2e;
+    }
+
+    html {
+        box-sizing: border-box;
+        block-size: 100%;
+    }
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+    }
+
+    body {
+        min-block-size: 100dvh;
+        font-family: 'Outfit', serif;
+        padding: 1rem;
+        display: grid;
+        place-items: center;
+        background: var(--bg);
+        color: white;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-transform: uppercase;
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+        object-fit: cover;
+    }
+}
