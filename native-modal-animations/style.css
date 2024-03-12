@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,200..700,0,0');
+@layer base, components;
+
+@layer components {
+    dialog {
+        --duration: 0.8s;
+        margin: auto;
+        border-radius: 24px;
+        width: min(100% - 2rem, 480px);
+        border: none;
+        opacity: 0;
+        translate: 0 60px;
+        transition: translate var(--duration), opacity 0.5s, display 0.5s allow-discrete,
+            overlay 0.5s allow-discrete;
+
+        &[open] {
+            opacity: 1;
+            translate: 0 0;
+            transition: translate var(--duration) var(--bounce), opacity 0.5s,
+                display 0.5s allow-discrete, overlay 0.5s allow-discrete;
+
+            &::backdrop {
+                opacity: 1;
+            }
+        }
+
+        &::backdrop {
+            opacity: 0;
+            transition: opacity 0.5s, display 0.5s allow-discrete, overlay 0.5s allow-discrete;
+            background: rgba(0 0 0 / 0.6);
+        }
+    }
+
+    @starting-style {
+        dialog[open] {
+            translate: 0 -60px;
+            opacity: 0;
+
+            &::backdrop {
+                opacity: 0;
+            }
+        }
+    }
+
+    button {
+        padding: 1rem;
+        background: black;
+        color: white;
+        border-radius: 1rem;
+        border: none;
+        font: inherit;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .header {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(90deg, #b3a7f0, #e3a7d0);
+        font-weight: 600;
+        font-size: 2.25rem;
+    }
+
+    hr {
+        margin-block: 1rem;
+        border: none;
+        height: 1px;
+        background: lightgray;
+    }
+
+    form {
+        display: grid;
+
+        label {
+            font-weight: 600;
+        }
+
+        input {
+            padding: 1rem 0.75rem;
+            border: none;
+            background: #efefef;
+            border-radius: 4px;
+            font: inherit;
+            outline: none;
+            margin-block: 0.5rem 1.75rem;
+        }
+    }
+    .content {
+        display: grid;
+        padding: 2rem 1.5rem;
+
+        p {
+            text-align: center;
+        }
+
+        & > * {
+            align-self: start;
+        }
+    }
+}
+
+@layer base {
+    :root {
+        --bg: #ebebed;
+        --spring: linear(
+            0,
+            0.01,
+            0.03,
+            0.14 4%,
+            0.72 13%,
+            0.94,
+            1.08,
+            1.11,
+            1.14,
+            1.15,
+            1.14,
+            1.12 33%,
+            1.02 43%,
+            0.99,
+            0.98 51%,
+            0.97 57%,
+            1 70% 100%
+        );
+        --bounce: linear(
+            0,
+            0,
+            0.02,
+            0.06,
+            0.14,
+            0.25,
+            0.39,
+            0.56,
+            0.77,
+            1,
+            0.89,
+            0.81,
+            0.77 50%,
+            0.75 52% 57%,
+            0.77 59%,
+            0.81,
+            0.89,
+            1,
+            0.95,
+            0.94 80% 84%,
+            0.95 86%,
+            1 91%,
+            0.99,
+            0.98,
+            0.99,
+            1
+        );
+    }
+
+    html {
+        box-sizing: border-box;
+        block-size: 100%;
+    }
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+    }
+
+    body {
+        min-block-size: 100dvh;
+        font-family: 'Fraunces', 'Karla', serif;
+        padding: 1rem;
+        background: var(--bg);
+        /* color: white; */
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+        object-fit: cover;
+    }
+}
